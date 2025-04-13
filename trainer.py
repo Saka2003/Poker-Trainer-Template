@@ -13,11 +13,50 @@ rfi_chart = {
 }
 
 response_chart = {
-    ('Cutoff', 'Big Blind', 'AKo'): '3b',
-    ('Cutoff', 'Big Blind', 'T9s'): 'call',
-    ('Cutoff', 'Big Blind', 'JTs'): 'call',
-    ('Early Position', 'Middle Position', 'AQs'): 'call',
-    ('Early Position', 'Middle Position', 'QQ'): '3b'
+   ('Middle Position', 'Middle Position', '77'): 'call', ('Middle Position', 'Middle Position', '88'): 'call',
+    ('Middle Position', 'Middle Position', '99'): 'call', ('Middle Position', 'Middle Position', 'TT'): 'call',
+    ('Middle Position', 'Middle Position', 'JJ'): 'call', ('Middle Position', 'Middle Position', '66'): 'call',
+    ('Middle Position', 'Middle Position', '55'): 'call', ('Middle Position', 'Middle Position', '87s'): 'call',
+    ('Middle Position', 'Middle Position', 'T9s'): 'call', ('Middle Position', 'Middle Position', 'JTs'): 'call',
+    ('Middle Position', 'Middle Position', 'KQs'): 'call', ('Middle Position', 'Middle Position', 'QJs'): 'call',
+    ('Middle Position', 'Middle Position', 'AJs'): 'call', ('Middle Position', 'Middle Position', 'AQs'): 'call',
+    ('Middle Position', 'Middle Position', 'KJs'): 'call', ('Middle Position', 'Middle Position', 'A2s'): 'call',
+    ('Middle Position', 'Middle Position', 'A3s'): 'call', ('Middle Position', 'Middle Position', 'A4s'): 'call',
+    ('Middle Position', 'Middle Position', 'ATs'): '3b', ('Middle Position', 'Middle Position', 'A5s'): '3b',
+    ('Middle Position', 'Middle Position', 'QQ'): '3b', ('Middle Position', 'Middle Position', 'KK'): '3b',
+    ('Middle Position', 'Middle Position', 'AA'): '3b', ('Middle Position', 'Middle Position', 'AKo'): '3b',
+    ('Middle Position', 'Middle Position', '76s'): '3b', ('Middle Position', 'Middle Position', 'AQo'): '3b',
+    ('Middle Position', 'Middle Position', 'KTs'): 'call', ('Middle Position', 'Middle Position', 'QTs'): 'call',
+
+    # CO vs MP (same as BTN vs UTG)
+    ('Middle Position', 'Button', '66'): 'call', ('Middle Position', 'Button', '55'): 'call',
+    ('Middle Position', 'Button', '76s'): '3b', ('Middle Position', 'Button', 'AQs'): '3b',
+    ('Middle Position', 'Button', 'KTs'): 'call', ('Middle Position', 'Button', 'QTs'): 'call',
+    ('Middle Position', 'Button', 'A4s'): 'call', ('Middle Position', 'Button', 'A3s'): 'call',
+    ('Middle Position', 'Button', 'A2s'): 'call',
+
+    # SB vs MP (same as facing UTG)
+    ('Middle Position', 'Small Blind', '77'): 'call', ('Middle Position', 'Small Blind', '88'): 'call',
+    ('Middle Position', 'Small Blind', '99'): 'call', ('Middle Position', 'Small Blind', 'TT'): 'call',
+    ('Middle Position', 'Small Blind', 'JJ'): 'call', ('Middle Position', 'Small Blind', 'T9s'): 'call',
+    ('Middle Position', 'Small Blind', 'JTs'): 'call', ('Middle Position', 'Small Blind', 'KQs'): 'call',
+    ('Middle Position', 'Small Blind', 'QJs'): 'call', ('Middle Position', 'Small Blind', 'AJs'): 'call',
+    ('Middle Position', 'Small Blind', 'AQs'): 'call', ('Middle Position', 'Small Blind', 'KJs'): 'call',
+    ('Middle Position', 'Small Blind', 'ATs'): '3b', ('Middle Position', 'Small Blind', 'A5s'): '3b',
+    ('Middle Position', 'Small Blind', 'QQ'): '3b', ('Middle Position', 'Small Blind', 'KK'): '3b',
+    ('Middle Position', 'Small Blind', 'AA'): '3b', ('Middle Position', 'Small Blind', 'AKo'): '3b',
+    ('Middle Position', 'Small Blind', '76s'): '3b', ('Middle Position', 'Small Blind', 'AQo'): '3b',
+    ('Middle Position', 'Small Blind', 'KTs'): 'call', ('Middle Position', 'Small Blind', 'QTs'): 'call',
+
+    # BB vs CO/BTN/SB — always call Axs not in 3b
+    ('Middle Position', 'Big Blind', 'A2s'): 'call', ('Middle Position', 'Big Blind', 'A3s'): 'call',
+    ('Middle Position', 'Big Blind', 'A4s'): 'call', ('Middle Position', 'Big Blind', 'A5s'): 'call',
+    ('Middle Position', 'Big Blind', 'A6s'): 'call', ('Middle Position', 'Big Blind', 'A7s'): 'call',
+    ('Middle Position', 'Big Blind', 'A8s'): 'call', ('Middle Position', 'Big Blind', 'A9s'): 'call',
+
+    # T9s and JTs from BB facing any RFI
+    ('Middle Position', 'Big Blind', 'T9s'): 'call', ('Middle Position', 'Big Blind', 'JTs'): 'call',
+    ('Middle Position', 'Big Blind', 'KTs'): 'call', ('Middle Position', 'Big Blind', 'QTs'): 'call'
 }
 
 def format_hand(card1, card2):
