@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Poker Trainer</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { margin: 5px; padding: 10px 15px; font-size: 16px; }
+    #scenario, #feedback { margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>Poker Trainer</h1>
+  <div>
+    <button onclick="switchMode('rfi')">RFI Trainer</button>
+    <button onclick="switchMode('response')">Facing RFI</button>
+  </div>
+  <div id="scenario">Loading...</div>
+
+  <div id="actions">
+    <button onclick="submitAction('fold')">Fold</button>
+    <button onclick="submitAction('call')">Call</button>
+    <button onclick="submitAction('3b')">3-Bet</button>
+  </div>
+
+  <div id="feedback"></div>
+  <button onclick="newHand()">Next Hand</button>
+
+  <script>
+    let current = {};
+    let mode = 'response';
+
+    async function newHand() {
+      const res = await fetch(`/new_hand?mode=${mode}`);
+      current = await res.json();
+      document.getElementById('feedback').innerText = '';
+      const handText = `Your hand: ${current.hand.join(' ')}`;
+      document.getElementById('scenario').innerText =
+        mode === 'response'
+        ? `${current.opener} raises. You are in ${current.position}. ${handText}`
+        : `You are first to act in ${current.position}. ${handText}`;
+    }
+
+    async function submitAction(action) {
+      const res = await fetch('/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...current, action })
+      });
+      const result = await res.json();
+      document.getElementById('feedback').innerText = result.correct
+        ? '✅ Correct!'
+        : `❌ Incorrect. Optimal is to ${result.optimal}.`;
+    }
+
+    newHand();
+    function switchMode(newMode) {
+        mode = newMode;
+        newHand();
+    }
+  </script>
+</body>
+</html>
