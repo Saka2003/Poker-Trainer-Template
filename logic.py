@@ -108,13 +108,27 @@ response_chart = {
     ('Middle Position', 'Cutoff', 'A2s'): 'call', ('Middle Position', 'Cutoff', 'A3s'): 'c
 
 def format_hand(card1, card2):
+    # Extract rank and suit
     r1, s1 = card1[0], card1[1]
     r2, s2 = card2[0], card2[1]
+
+    # Make sure ranks are uppercase for safety
+    r1 = r1.upper()
+    r2 = r2.upper()
+
+    # Determine if suited or offsuit
     suited = s1 == s2
+
+    # Sort ranks by strength (high card first)
     sorted_ranks = sorted([r1, r2], key=lambda x: ranks.index(x), reverse=True)
+
+    # If it's a pair (e.g., TT), return like 'TT'
     if sorted_ranks[0] == sorted_ranks[1]:
         return sorted_ranks[0] + sorted_ranks[1]
+
+    # Return formatted like 'AKs' or 'T9o'
     return ''.join(sorted_ranks) + ('s' if suited else 'o')
+
 
 def get_hand_scenario(mode='response'):
     deck = [r + s for r in ranks for s in suits]
