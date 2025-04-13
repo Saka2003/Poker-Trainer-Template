@@ -153,6 +153,7 @@ def get_hand_scenario(mode='response'):
 
 def evaluate_action(hero_pos, opener_pos, hand, action):
     hand_key = format_hand(*hand)
+    print(f"DEBUG: Position={hero_pos}, Hand={hand}, Formatted={hand_key}")
     if opener_pos:
         key = (opener_pos, hero_pos, hand_key)
         optimal = response_chart.get(key, 'fold')
